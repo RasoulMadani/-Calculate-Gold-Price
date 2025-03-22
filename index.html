@@ -37,11 +37,16 @@
         }
     </style>
 </head>
-<body class="d-flex justify-content-center align-items-center">
-    <div class="container">
+<body class="d-flex justify-content-center align-items-center" id="content">
+    <div class="container" >
         <div class="text-center mb-4 mt-5">
             <h2 class="text-warning">بسم رب الشهدا</h2>
             <h1 class="text-info">محاسبه قیمت طلای طاها</h1>
+        </div>
+
+        <div class="mb-3">
+            <button class="btn btn-secondary" onclick="changeFontSize(1)">A+</button>
+            <button class="btn btn-secondary" onclick="changeFontSize(-1)">A-</button>
         </div>
 
         <div class="mb-3">
@@ -88,6 +93,12 @@
             document.execCommand("copy");
             document.getElementById("pcopy").classList.remove("d-none");
             setTimeout(() => document.getElementById("pcopy").classList.add("d-none"), 2000);
+        }
+        function changeFontSize(change) {
+            let content = document.getElementById("content");
+            let currentSize = window.getComputedStyle(content).fontSize;
+            let newSize = parseInt(currentSize) + change;
+            content.style.fontSize = newSize + "px";
         }
     </script>
 
