@@ -116,6 +116,27 @@
         
         }
 
+        function fetchGoldPrice() {
+             fetch("https://api.navasan.tech/latest/?item=18ayar&api_key=freewDvLQYonK8v62ne37BoG977LHoZl")
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log()
+            document.getElementById("numberInput").value = data["18ayar"].value;
+            let priceLahzeh = Number(data["18ayar"].value).toLocaleString('fa-IR'); // جدا کردن سه‌رقمی
+
+            document.getElementById('formattedOutput').innerText = priceLahzeh;
+         }).catch(error => {
+            // document.getElementById("gold-price").innerText = "خطا در دریافت اطلاعات!";
+            console.error("Error fetching gold price:", error);
+        });
+}
+
+// دریافت قیمت طلا در شروع
+fetchGoldPrice();
+
+// به‌روزرسانی قیمت هر 30 ثانیه
+setInterval(fetchGoldPrice, 120000);
+
 
             function createReshteh(vazne){
                 let reshteh = `_____________________________
@@ -149,6 +170,8 @@
                     console.error("خطا در کپی کردن متن:", error);
                 });
         }
+    
+    
     </script>
 
 </body>
